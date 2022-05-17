@@ -1,0 +1,26 @@
+{
+  "name": "popup-generator",
+  "version": "1.0.0",
+  "description": "Allow a user to create a customized pop up for their website.",
+  "main": "scripts.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ifdan/popup-generator.git"
+  },
+  "keywords": [
+    "popup",
+    "javaScript",
+    "js",
+    "html",
+    "css"
+  ],
+  "author": "Dan Wagner",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ifdan/popup-generator/issues"
+  },
+  "homepage": "https://github.com/ifdan/popup-generator#readme"
+}
