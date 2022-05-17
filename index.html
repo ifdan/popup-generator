@@ -1,0 +1,30 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500&display=swap" rel="stylesheet">
+
+<div id="live-content" class="live-content center promotion exf-supercycle" style="display: none;">
+  <div class="content-container">
+    <div class="body-content">
+      <span class="close">&times;</span>
+      <p>PHASE 2 <span class="gradient"></span></p>
+      <h2>The supercycle begins</h2>
+      <h3>It could result in greater gains than you&rsquo;ve ever seen in your life.</h3>
+      <a href="https://pro.banyanhill.com/m/1931628" target="_blank" rel="noopener">I&rsquo;m IN! <span
+          class="right-arrow"></span></a>
+    </div>
+  </div>
+</div>
+
+<script>
+  let exfSupercycleCheck = setInterval(() => {
+    if (typeof LiveContent !== 'undefined') {
+      let exfSupercycle = new LiveContent({
+        popUpName: 'exf-supercycle',
+        showAgainInDays: '3650',
+        delayInSeconds: '10',
+      });
+      exfSupercycle.checkCookie(exfSupercycle.args);
+      clearInterval(exfSupercycleCheck);
+    }
+  }, 500);
+</script>
