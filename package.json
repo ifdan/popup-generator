@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/ifdan/popup-generator/issues"
   },
-  "homepage": "https://github.com/ifdan/popup-generator#readme"
+  "homepage": "https://github.com/ifdan/popup-generator#readme",
+  "dependencies": {
+    "http-serve": "^1.0.1"
+  }
 }
