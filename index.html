@@ -19,14 +19,15 @@
     }
 
     h1 {
-      font-size: 4rem;
-      line-height: 4.25rem;
-      padding-bottom: 2rem;
-      padding-top: 4rem;;
+      font-size: 6rem;
+      line-height: 6rem;
+      padding-bottom: 4rem;
+      padding-top: 4rem;
     }
 
     h3 {
       line-height: 2.3rem;
+      font-size: 2rem;
     }
 
     h1, h3 {
@@ -34,9 +35,60 @@
     }
 
     img {
-      margin-top: 4rem;
-      width: 600px;
-      height: 300px;
+      border: .1rem dashed rgb(0, 0, 0);
+      border-radius: 1.5rem;
+      position: relative;
+      box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
+      width: 400px;
+      height: 200px;
+    }
+
+    .first-img {
+      top: 3rem;
+      left: 15rem;
+      transition: box-shadow 400ms, height 400ms, width 400ms, left 400ms, border-radius 300ms;
+    }
+
+    .first-img:hover {
+      box-shadow: rgba(0, 0, 0, 0.3) 0px 63px 43px -7px;
+      border-radius: 0.5rem;
+      width: 405px;
+      height: 202.50px;
+      left: 14.84375rem;
+      border: none;
+      cursor: pointer;
+    }
+
+    .second-img {
+      top: 12rem;
+      right: 20rem;
+      transition: box-shadow 400ms, height 400ms, width 400ms, left 400ms, border-radius 300ms;
+    }
+
+    .second-img:hover {
+      box-shadow: rgba(0, 0, 0, 0.3) 0px 63px 43px -7px;
+      border-radius: 0.5rem;
+      width: 405px;
+      height: 202.50px;
+      right: 19.84375rem;
+      border: none;
+      cursor: pointer;
+    }
+
+    .third-img {
+      top: 7rem;
+      left: 19rem;
+      transition: box-shadow 400ms, height 400ms, width 400ms, left 400ms, border-radius 300ms;
+    }
+
+    .third-img:hover {
+      box-shadow: rgba(0, 0, 0, 0.3) 0px 63px 43px -7px;
+      border-radius: 0.5rem;
+      width: 405px;
+      height: 202.50px;
+      left: 18.84375rem;
+      border: none;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -54,8 +106,10 @@
           <h3 style="padding-top: 1.5rem;">Get Started <i class="bi bi-arrow-down-short"></i></h3>
         </div>
         <div class="col-7">
-          <div class="pop-up-example-container">
-            <img src="images/test.jpg" alt="">
+          <div class="example-container">
+            <img src="images/test.jpg" alt="" class="first-img">
+            <img src="images/test.jpg" alt="" class="second-img">
+            <img src="images/test.jpg" alt="" class="third-img">
           </div>
         </div>
       </div>
