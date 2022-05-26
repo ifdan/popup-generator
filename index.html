@@ -23,15 +23,23 @@
       line-height: 5.7rem;
       padding-bottom: 2.5rem;
       padding-top: 4rem;
+      letter-spacing: 0.05rem;
     }
 
     h3 {
+      letter-spacing: 0.05rem;
       line-height: 2.3rem;
-      font-size: 1.7rem;
+      font-size: 1.7rem;;
     }
 
     h1, h3 {
       padding-left: 4rem;
+    }
+
+    .bi-arrow-down-circle-fill:hover {
+      color: rgb(255,179,71);
+      cursor: pointer;
+      transition: color 300ms;
     }
 
     img {
@@ -96,16 +104,16 @@
   <header>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-5" style="background-color: rgb(14, 115, 179);">
+        <div class="col-5" style="background-color: rgb(14, 115, 179); height: 787px;">
           <h1>
-            Think.<br>
-            Create.<br>
-            Customize.
+            Think<span style="color: rgb(255,179,71);">.</span><br>
+            Create<span style="color: rgb(255,179,71);">.</span><br>
+            Customize<span style="color: rgb(255,179,71);">.</span>
           </h1>
           <h3>Create Custom Pop Ups for<br> Your Website.</h3>
-          <h3 style="padding-top: 1.5rem;">Get Started <i class="bi bi-arrow-down-short"></i></h3>
+          <h3 style="padding-top: 1.5rem;">Get Started <i class="bi bi-arrow-down-circle-fill"></i></h3>
         </div>
-        <div class="col-7" style="background-color: rgb(255,179,71); height: 1000px;">
+        <div class="col-7" style="background-color: rgb(255,179,71);">
           <div class="example-container">
             <img src="images/test.jpg" alt="" class="first-img">
             <img src="images/test.jpg" alt="" class="second-img">
@@ -115,7 +123,8 @@
       </div>
       <div class="row">
         <div class="col-12" style="display: flex; justify-content: center;">
-          <div style="border: 2px solid #000; width: 700px; height: 400px; position: relative; bottom: 18rem; background-color: white;"></div>
+          <div style="border: 2px solid #000; width: 700px; height: 400px; background-color: white; position: relative; bottom: 3.5rem;">
+          <span style="color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-size: 1.7rem; font-weight: 505; position: absolute; right: 0.7rem; top: 0.6rem; line-height: 1.2rem;">&times;</span></div>
         </div>
       </div>
     </div>
