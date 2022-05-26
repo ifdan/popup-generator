@@ -43,7 +43,6 @@
     }
 
     img {
-      border: .1rem dashed rgb(0, 0, 0);
       border-radius: 1.5rem;
       position: absolute;
       box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
@@ -54,49 +53,40 @@
     .first-img {
       top: 5rem;
       left: 56rem;
-      transition: box-shadow 400ms, height 400ms, width 400ms, left 400ms, border-radius 300ms;
-    }
-
-    .first-img:hover {
-      box-shadow: rgba(0, 0, 0, 0.3) 0px 63px 43px -7px;
-      border-radius: 0.5rem;
-      width: 305px;
-      height: 152.50px;
-      left: 54.84375rem;
-      border: none;
-      cursor: pointer;
     }
 
     .second-img {
       top: 13rem;
       left: 44rem;
-      transition: box-shadow 400ms, height 400ms, width 400ms, left 400ms, border-radius 300ms;
-    }
-
-    .second-img:hover {
-      box-shadow: rgba(0, 0, 0, 0.3) 0px 63px 43px -7px;
-      border-radius: 0.5rem;
-      width: 305px;
-      height: 152.50px;
-      left: 39.84375rem;
-      border: none;
-      cursor: pointer;
     }
 
     .third-img {
       top: 22rem;
       left: 58rem;
-      transition: box-shadow 400ms, height 400ms, width 400ms, left 400ms, border-radius 300ms;
     }
 
-    .third-img:hover {
-      box-shadow: rgba(0, 0, 0, 0.3) 0px 63px 43px -7px;
-      border-radius: 0.5rem;
-      width: 305px;
-      height: 152.50px;
-      left: 59.84375rem;
-      border: none;
-      cursor: pointer;
+    .text {
+      animation: fillSvg;
+      animation-duration: 3s;
+      animation-timing-function: ease-in-out;
+      margin-top: -1rem;
+      margin-left: 4rem;
+      stroke-dasharray: 1186;
+      stroke-dashoffset: 1186;
+    }
+
+    .text-ended {
+      stroke-dashoffset: 0;
+    }
+
+    @keyframes fillSvg{
+      0% {
+          stroke-dashoffset: 1186;
+      }
+
+      100% {
+          stroke-dashoffset: 0;
+      }
     }
   </style>
 </head>
@@ -104,7 +94,7 @@
   <header>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-5" style="background-color: rgb(14, 115, 179); box-shadow: rgba(44, 62, 80, 0.5) -15px 0px 15px -15px inset; height: 787px;">
+        <div class="col-5" style="background-color: rgb(14, 115, 179); box-shadow: rgba(44, 62, 80, 0.5) -15px 0px 15px -15px inset; height: 787px; z-index: 2;">
           <h1>
             Think<span style="color: rgb(255,179,71);">.</span><br>
             Create<span style="color: rgb(255,179,71);">.</span><br>
@@ -114,6 +104,9 @@
           <h3 style="padding-top: 1.5rem;">Get Started <i class="bi bi-arrow-down"></i></h3>
         </div>
         <div class="col-7" style="box-shadow: rgba(44, 62, 80, 0.5) 15px 0px 15px -15px inset;">
+          <svg class="text" width="212" height="729" viewBox="0 0 212 729" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M164 9C138.428 13.5664 113.417 25.4288 91.8889 39.7222C74.4527 51.2987 59.3384 65.84 45.2222 81.2222C33.5183 93.9758 21.4084 108.439 14.2778 124.389C5.61542 143.765 7.55058 166.321 19.4444 183.778C31.4503 201.399 47.9966 216.468 63.4444 231C81.1953 247.699 98.506 264.821 116.167 281.611C145.983 309.957 176.535 337.827 189.889 377.889C199.837 407.734 203 438.129 203 469.444C203 484.935 202.827 500.272 200 515.556C197.565 528.716 192.307 540.739 187 552.944C174.904 580.765 158.886 606.172 140 629.889C122.851 651.425 104.003 670.946 85.2222 691C83.2911 693.062 56.1994 721.314 55.2222 719.556C53.4798 716.419 55.8201 709.245 55.9444 705.889C56.2144 698.6 56.7106 691.388 57.2222 684.111C58.1144 671.423 59 658.72 59 646C59 639.75 60.4107 658.427 60.7778 664.667C61.4889 676.756 62.4388 688.766 63.4444 700.833C63.7867 704.941 62.2281 713.767 64.2222 717.556C65.2711 719.549 73.2155 715.299 74.2222 714.889C87.1893 709.606 100.027 706.641 114 705.222C125.863 704.018 137.817 704.317 149.667 703C152.233 702.715 153.659 702.011 155 700" stroke="#FFB347" stroke-width="17" stroke-linecap="round"/>
+            </svg>
           <div class="example-container">
             <img src="images/test.jpg" alt="" class="first-img">
             <img src="images/test.jpg" alt="" class="second-img">
@@ -123,11 +116,16 @@
       </div>
       <div class="row">
         <div class="col-12" style="display: flex; justify-content: center;">
-          <div style="border: 2px solid #000; width: 700px; height: 400px; background-color: white; position: relative; bottom: 3.5rem;">
+          <div style="border: 2px solid #000; width: 700px; height: 400px; background-color: white; position: relative; bottom: 3.5rem; z-index: 3;">
           <span style="color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-size: 1.7rem; font-weight: 505; position: absolute; right: 0.7rem; top: 0.6rem; line-height: 1.2rem;">&times;</span></div>
         </div>
       </div>
     </div>
   </header>
+  <script>
+    document.querySelectorAll('.text')[0].addEventListener('animationend', () => {
+      document.querySelectorAll('.text')[0].classList.add('text-ended');
+    });
+  </script>
 </body>
 </html>
