@@ -149,10 +149,6 @@
       width: 92%
     }
 
-    .bi-arrow-down-circle-fill {
-      color: rgb(255,179,71);
-    }
-
     @keyframes grow-again-and-again {
       0% {
         width: 0%;
@@ -160,6 +156,26 @@
 
       100% {
         width: 92%;
+      }
+    }
+
+    .bi-arrow-down-circle-fill {
+      animation-name: change-circle;
+      animation-duration: 1s;
+      animation-timing-function: ease-in-out;
+    }
+
+    .change-color {
+      color: rgb(255,179,71);
+    }
+
+    @keyframes change-circle {
+      0% {
+        color: rgb(14, 115, 179);
+      }
+
+      100% {
+        color: rgb(255,179,71);
       }
     }
   </style>
@@ -213,6 +229,10 @@
       arrow.classList.remove('bi-arrow-down-short');
       arrow.classList.add('bi-arrow-down-circle-fill');
     });
+    const arrow = document.querySelector('#arrow-down');
+    arrow.addEventListener('animationend', (e) => {
+      arrow.classList.add('change-color');
+    })
   </script>
 </body>
 </html>
