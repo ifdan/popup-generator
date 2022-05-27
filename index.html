@@ -89,10 +89,10 @@
     .box-e .custom-underline::after {
       top: 92%;
       height: 6px;
-      left: 5%;
+      left: 1%;
       background-color: rgb(255,179,71);
       animation-name: grow;
-      animation-duration: 1s;
+      animation-duration: 2s;
       animation-timing-function: ease-in-out;
       width: 92%;
     }
@@ -110,13 +110,17 @@
     .box-c .custom-underline::after {
       top: 92%;
       height: 6px;
-      left: 5%;
+      left: 1%;
       background-color: rgb(255,179,71);
       animation-name: grow-again;
       animation-delay: 800ms;
-      animation-duration: 1s;
+      animation-duration: 2s;
       animation-timing-function: ease-in-out;
       width: 0%;
+    }
+
+    .box-c .super::after {
+      width: 92%
     }
 
     @keyframes grow-again {
@@ -129,16 +133,24 @@
       }
     }
 
-    .box-d .custom-underline {
+    .box-d .custom-underline::after {
       top: 92%;
       height: 6px;
-      left: 5%;
+      left: 1%;
       background-color: rgb(255,179,71);
       animation-name: grow-again-and-again;
       animation-delay: 1.8s;
-      animation-duration: 1s;
+      animation-duration: 2s;
       animation-timing-function: ease-in-out;
-      width: 0%;
+      width:0%;
+    }
+
+    .box-d .super::after {
+      width: 92%
+    }
+
+    .bi-arrow-down-circle-fill {
+      color: rgb(255,179,71);
     }
 
     @keyframes grow-again-and-again {
@@ -169,7 +181,7 @@
             </span>
           </h1>
           <h3>Create Custom Pop Ups for<br> Your Website.</h3>
-          <h3 style="padding-top: 1.5rem;">Get Started <i class="bi bi-arrow-down"></i></h3>
+          <h3 style="padding-top: 1.5rem;">Get Started <i id="arrow-down" class="bi bi-arrow-down-short"></i></h3>
         </div>
         <div class="col-7" style="box-shadow: rgba(44, 62, 80, 0.5) 15px 0px 15px -15px inset;">     
           <div class="example-container">
@@ -187,10 +199,20 @@
       </div>
     </div>
   </header>
+  
   <script>
-    document.querySelector('.box-c .custom-underline').addEventListener('animationend', (e) => {
-      document.querySelector('.box-c .custom-underline').style.width = '92%';
+    const underlineFirst = document.querySelector('.box-c .custom-underline');
+      underlineFirst.addEventListener('animationend', (e) => {
+      underlineFirst.classList.add('super');
     })
+
+    const underline = document.querySelector('.box-d .custom-underline');
+    underline.addEventListener('animationend', (e) => {
+      underline.classList.add('super');
+      const arrow = document.querySelector('#arrow-down');
+      arrow.classList.remove('bi-arrow-down-short');
+      arrow.classList.add('bi-arrow-down-circle-fill');
+    });
   </script>
 </body>
 </html>
