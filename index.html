@@ -20,7 +20,7 @@
 
     h1 {
       font-size: 6rem;
-      line-height: 5.7rem;
+      line-height: 5.9rem;
       padding-bottom: 2.5rem;
       padding-top: 4rem;
       letter-spacing: 0.05rem;
@@ -65,27 +65,89 @@
       left: 58rem;
     }
 
-    .text {
-      animation: fillSvg;
-      animation-duration: 3s;
+    .custom-underline {
+      position: relative;
+      display: inline-block;
+      text-align: center;
+      color: rgb(245, 245, 245);
+    }
+
+    .custom-underline,
+    .custom-underline:hover,
+    .custom-underline:focus,
+    .custom-underline:active {
+      text-decoration: none;
+      color: rgb(245, 245, 245);
+      cursor: default;
+    }
+
+    .custom-underline::after {
+      content: "";
+      position: absolute;
+    }
+
+    .box-e .custom-underline::after {
+      top: 92%;
+      height: 6px;
+      left: 5%;
+      background-color: rgb(255,179,71);
+      animation-name: grow;
+      animation-duration: 1s;
       animation-timing-function: ease-in-out;
-      margin-top: -1rem;
-      margin-left: 4rem;
-      stroke-dasharray: 1186;
-      stroke-dashoffset: 1186;
+      width: 92%;
     }
 
-    .text-ended {
-      stroke-dashoffset: 0;
-    }
-
-    @keyframes fillSvg{
+    @keyframes grow {
       0% {
-          stroke-dashoffset: 1186;
+        width: 0%;
       }
 
       100% {
-          stroke-dashoffset: 0;
+        width: 92%;
+      }
+    }
+
+    .box-c .custom-underline::after {
+      top: 92%;
+      height: 6px;
+      left: 5%;
+      background-color: rgb(255,179,71);
+      animation-name: grow-again;
+      animation-delay: 800ms;
+      animation-duration: 1s;
+      animation-timing-function: ease-in-out;
+      width: 0%;
+    }
+
+    @keyframes grow-again {
+      0% {
+        width: 0%;
+      }
+
+      100% {
+        width: 92%;
+      }
+    }
+
+    .box-d .custom-underline {
+      top: 92%;
+      height: 6px;
+      left: 5%;
+      background-color: rgb(255,179,71);
+      animation-name: grow-again-and-again;
+      animation-delay: 1.8s;
+      animation-duration: 1s;
+      animation-timing-function: ease-in-out;
+      width: 0%;
+    }
+
+    @keyframes grow-again-and-again {
+      0% {
+        width: 0%;
+      }
+
+      100% {
+        width: 92%;
       }
     }
   </style>
@@ -94,19 +156,22 @@
   <header>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-5" style="background-color: rgb(14, 115, 179); box-shadow: rgba(44, 62, 80, 0.5) -15px 0px 15px -15px inset; height: 787px; z-index: 2;">
+        <div class="col-5" style="background-color: rgb(14, 115, 179); box-shadow: rgba(44, 62, 80, 0.5) -15px 0px 15px -15px inset; height: 787px;">
           <h1>
-            Think<span style="color: rgb(255,179,71);">.</span><br>
-            Create<span style="color: rgb(255,179,71);">.</span><br>
-            Customize<span style="color: rgb(255,179,71);">.</span>
+            <span class="box-e">
+              <a href="#" class="custom-underline">Think<span style="color: rgb(255,179,71);">.</span></a>
+            </span><br>
+            <span class="box-c">
+              <a href="#" class="custom-underline">Create<span style="color: rgb(255,179,71);">.</span></a>
+            </span><br>
+            <span class="box-d">
+              <a href="#" class="custom-underline">Customize<span style="color: rgb(255,179,71);">.</span></a>
+            </span>
           </h1>
           <h3>Create Custom Pop Ups for<br> Your Website.</h3>
           <h3 style="padding-top: 1.5rem;">Get Started <i class="bi bi-arrow-down"></i></h3>
         </div>
-        <div class="col-7" style="box-shadow: rgba(44, 62, 80, 0.5) 15px 0px 15px -15px inset;">
-          <svg class="text" width="212" height="729" viewBox="0 0 212 729" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M164 9C138.428 13.5664 113.417 25.4288 91.8889 39.7222C74.4527 51.2987 59.3384 65.84 45.2222 81.2222C33.5183 93.9758 21.4084 108.439 14.2778 124.389C5.61542 143.765 7.55058 166.321 19.4444 183.778C31.4503 201.399 47.9966 216.468 63.4444 231C81.1953 247.699 98.506 264.821 116.167 281.611C145.983 309.957 176.535 337.827 189.889 377.889C199.837 407.734 203 438.129 203 469.444C203 484.935 202.827 500.272 200 515.556C197.565 528.716 192.307 540.739 187 552.944C174.904 580.765 158.886 606.172 140 629.889C122.851 651.425 104.003 670.946 85.2222 691C83.2911 693.062 56.1994 721.314 55.2222 719.556C53.4798 716.419 55.8201 709.245 55.9444 705.889C56.2144 698.6 56.7106 691.388 57.2222 684.111C58.1144 671.423 59 658.72 59 646C59 639.75 60.4107 658.427 60.7778 664.667C61.4889 676.756 62.4388 688.766 63.4444 700.833C63.7867 704.941 62.2281 713.767 64.2222 717.556C65.2711 719.549 73.2155 715.299 74.2222 714.889C87.1893 709.606 100.027 706.641 114 705.222C125.863 704.018 137.817 704.317 149.667 703C152.233 702.715 153.659 702.011 155 700" stroke="#FFB347" stroke-width="17" stroke-linecap="round"/>
-            </svg>
+        <div class="col-7" style="box-shadow: rgba(44, 62, 80, 0.5) 15px 0px 15px -15px inset;">     
           <div class="example-container">
             <img src="images/test.jpg" alt="" class="first-img">
             <img src="images/test.jpg" alt="" class="second-img">
@@ -123,9 +188,9 @@
     </div>
   </header>
   <script>
-    document.querySelectorAll('.text')[0].addEventListener('animationend', () => {
-      document.querySelectorAll('.text')[0].classList.add('text-ended');
-    });
+    document.querySelector('.box-c .custom-underline').addEventListener('animationend', (e) => {
+      document.querySelector('.box-c .custom-underline').style.width = '92%';
+    })
   </script>
 </body>
 </html>
