@@ -18,7 +18,7 @@
   <header>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-12 col-sm-6 col-lg-5 container-headline-parent">
+        <div class="col-12 col-xl-6 container-headline-parent">
           <div class="container-headline">
             <h1>Think<span>.</span><br>
               Create<span>.</span><br>
@@ -28,18 +28,16 @@
             <h2 class="get-started-header" style="padding-top: 1.5rem;">Get Started <i id="arrow-down" class="bi bi-arrow-down-circle-fill"></i></h2>
           </div>
         </div>
-        <div class="col-12 col-sm-6 col-lg-7" style="box-shadow: rgba(44, 62, 80, 0.5) 15px 0px 15px -15px inset;">
+        <div class="col-12 col-xl-6 container-modal-examples-parent">
           <div class="example-container">
-            <img src="images/test.jpg" alt="" class="img-fluid">
-            <img src="images/test.jpg" alt="" class="img-fluid">
-            <img src="images/test.jpg" alt="" class="img-fluid">
+
           </div>
         </div>
       </div>
     </div>
   </header>
   <section>
-    <div class="container-fluid">
+    <div class="container-fluid container-modal-configuration">
       <div class="row">
         <div class="col-12" style="display: flex; justify-content: center;">
           <div style="border: 2px solid #000; width: 700px; height: 400px; background-color: white; position: relative; bottom: 3.5rem; z-index: 3;">
@@ -49,13 +47,37 @@
     </div>
   </section>
 
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
   <script>
-    if (window.matchMedia('(max-width: 575px)').matches) {
-      const windowHeight = window.innerHeight / 2;
-      document.querySelectorAll('.container-headline-parent')[0].style.height = `${windowHeight}px`;
-    }
+    window.addEventListener('resize', () => {
+      if (window.matchMedia('(max-width: 1199px)').matches) {
+        const windowHeight = window.innerHeight;
+        document.querySelectorAll('.container-headline-parent')[0].style.height = `${windowHeight}px`;
+        document.querySelectorAll('.container-modal-examples-parent')[0].style.height = `${windowHeight}px`;
+      } else if (window.matchMedia('(min-width: 1200px)').matches) {
+        const windowHeight = window.innerHeight;
+        document.querySelectorAll('.container-headline-parent')[0].style.height = `${windowHeight}px`;
+        document.querySelectorAll('.container-modal-examples-parent')[0].style.height = `${windowHeight}px`;
+        document.querySelectorAll('.container-modal-configuration')[0].style.height = `${windowHeight}px`;
+      }
+    });
+
+      if (window.matchMedia('(max-width: 1199px)').matches) {
+        const windowHeight = window.innerHeight;
+        document.querySelectorAll('.container-headline-parent')[0].style.height = `${windowHeight}px`;
+        document.querySelectorAll('.container-modal-examples-parent')[0].style.height = `${windowHeight}px`;
+      } else if (window.matchMedia('(min-width: 1200px)').matches) {
+        const windowHeight = window.innerHeight;
+        document.querySelectorAll('.container-headline-parent')[0].style.height = `${windowHeight}px`;
+        document.querySelectorAll('.container-modal-examples-parent')[0].style.height = `${windowHeight}px`;
+        document.querySelectorAll('.container-modal-configuration')[0].style.height = `${windowHeight}px`;
+      }
+
+      document.querySelectorAll('.bi-arrow-down-circle-fill')[0].addEventListener('click', () => {
+        document.querySelectorAll('.container-modal-configuration')[0].scrollIntoView({
+          block: 'end',
+          behavior: 'smooth'
+        })
+      });
   </script>
 </body>
 
