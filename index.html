@@ -25,7 +25,7 @@
               Customize<span>.</span>
             </h1>
             <h2 class="create-header">Create Custom Pop Ups for<br> Your Website.</h2>
-            <h2 class="get-started-header" style="padding-top: 1.5rem;">Get Started <i id="arrow-down" class="bi bi-arrow-down-circle-fill"></i></h2>
+            <h2 class="get-started-header">Get Started <i id="arrow-down" class="bi bi-arrow-down-circle-fill"></i></h2>
           </div>
         </div>
         <div class="col-12 col-xl-6 container-modal-examples-parent">
@@ -36,18 +36,35 @@
       </div>
     </div>
   </header>
-  <section>
-    <div class="container-fluid container-modal-configuration">
-      <div class="row">
-        <div class="col-12" style="display: flex; justify-content: center;">
-          <div style="border: 2px solid #000; width: 700px; height: 400px; background-color: white; position: relative; bottom: 3.5rem; z-index: 3;">
-            <span style="color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-size: 1.7rem; font-weight: 505; position: absolute; right: 0.7rem; top: 0.6rem; line-height: 1.2rem;">&times;</span></div>
+  <main>
+    <article>
+      <div class="container-fluid container-modal-configuration">
+        <div class="row">
+          <div class="col-12" style="display: flex; justify-content: center;">
+            <div id="test" class="modal-configuration">
+              <span>&times;</span></div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </article>
+  </main>
 
+  <!-- still need to -->
+  <!-- stop modal at specific point when scrolling -->
+  <!-- Create a smooth scroll animation when you click the get started down arrow -->
   <script>
+    class PageVisit {
+      init() {
+
+      }
+
+      #screenSize() {
+
+      }
+    }
+
+    window.onload = () => new PageVisit().init();
+
     window.addEventListener('resize', () => {
       if (window.matchMedia('(max-width: 1199px)').matches) {
         const windowHeight = window.innerHeight;
@@ -61,23 +78,25 @@
       }
     });
 
-      if (window.matchMedia('(max-width: 1199px)').matches) {
-        const windowHeight = window.innerHeight;
-        document.querySelectorAll('.container-headline-parent')[0].style.height = `${windowHeight}px`;
-        document.querySelectorAll('.container-modal-examples-parent')[0].style.height = `${windowHeight}px`;
-      } else if (window.matchMedia('(min-width: 1200px)').matches) {
-        const windowHeight = window.innerHeight;
-        document.querySelectorAll('.container-headline-parent')[0].style.height = `${windowHeight}px`;
-        document.querySelectorAll('.container-modal-examples-parent')[0].style.height = `${windowHeight}px`;
-        document.querySelectorAll('.container-modal-configuration')[0].style.height = `${windowHeight}px`;
+    if (window.matchMedia('(max-width: 1199px)').matches) {
+      const windowHeight = window.innerHeight;
+      document.querySelectorAll('.container-headline-parent')[0].style.height = `${windowHeight}px`;
+      document.querySelectorAll('.container-modal-examples-parent')[0].style.height = `${windowHeight}px`;
+    } else if (window.matchMedia('(min-width: 1200px)').matches) {
+      const windowHeight = window.innerHeight;
+      document.querySelectorAll('.container-headline-parent')[0].style.height = `${windowHeight}px`;
+      document.querySelectorAll('.container-modal-examples-parent')[0].style.height = `${windowHeight}px`;
+      document.querySelectorAll('.container-modal-configuration')[0].style.height = `${windowHeight}px`;
+    }
+    const height = window.innerHeight;
+    document.addEventListener('scroll', () => {
+      if (window.pageYOffset > 20) {
+        const opac = (window.pageYOffset / height);
+        document.body.style.background = "linear-gradient(rgba(255, 255, 255, " + opac + "), rgba(255, 255, 255, " + opac + ")), rgba(14, 115, 179, 1)";
+      } else {
+        document.body.style.background = "rgba(14, 115, 179, 1)";
       }
-
-      document.querySelectorAll('.bi-arrow-down-circle-fill')[0].addEventListener('click', () => {
-        document.querySelectorAll('.container-modal-configuration')[0].scrollIntoView({
-          block: 'end',
-          behavior: 'smooth'
-        })
-      });
+    });
   </script>
 </body>
 
