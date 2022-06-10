@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: rgba(14, 115, 179, 1);
   color: rgb(245, 245, 245);
@@ -11,6 +15,7 @@ header .container-headline-parent {
 }
 
 header .container-headline h1 {
+  color: rgb(245, 245, 245);
   padding: 0 0 1.5rem 1rem;
   font-size: 2.5rem;
   letter-spacing: 0.07rem;
@@ -21,6 +26,7 @@ header .container-headline h1 > span {
 }
 
 header .container-headline h2 {
+  color: rgb(245, 245, 245);
   letter-spacing: 0.07rem;
   padding-left: 1rem;
 }
