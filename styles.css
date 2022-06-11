@@ -57,11 +57,11 @@ header .container-modal-examples-parent {
   display: none;
 }
 
-article .container-modal-configuration {
+section .container-modal-configuration {
   display: none;
 }
 
-article .modal-configuration {
+section .modal-configuration {
   border: 2px solid #000; 
   width: 700px; 
   height: 400px; 
@@ -71,7 +71,7 @@ article .modal-configuration {
   z-index: 2;
 }
 
-article .modal-configuration > span {
+section .modal-configuration > span {
   color: rgb(0, 0, 0);
   font-size: 1.7rem;
   font-weight: 500;
@@ -130,7 +130,7 @@ article .modal-configuration > span {
     padding-top: 4rem;
   }
 
-  article .container-modal-configuration {
+  section .container-modal-configuration {
     display: block;
   }
 

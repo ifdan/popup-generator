@@ -1,51 +1,39 @@
-// next time you get on you need to clean up your event listeners
-// consolidate the scroll event listeners
-// update the reference to the window height that you get in fadeBackground function and controlModalPlacement function.
+// next time you get on:
+// when the whole configuration container is in view, stop translating modal. but you need to resume translation if they resume that scroll up again.
 
 class PageVisit {
   init() {
     const windowHeight = window.innerHeight;
-    const firstContainer = document.querySelector('#intro-header');
-    const secondContainer = document.querySelector('#container-modal-configuration');
-    this.#sizeContainers([
-      firstContainer,
-      secondContainer
-    ], windowHeight)
-    this.#addWindowListener();
+    const containers = [document.querySelector('#intro-header'), document.querySelector('#container-modal-configuration')];
+    this.#sizeContainers(containers, windowHeight)
+    this.#addWindowListener(containers, windowHeight);
   }
 
-  #addWindowListener() {
+  #addWindowListener(containers, windowHeight) {
+    this.#fadeBackground(windowHeight);
     window.addEventListener('resize', () => {
       const windowHeight = window.innerHeight;
-      const firstContainer = document.querySelector('#intro-header');
-      const secondContainer = document.querySelector('#container-modal-configuration');
-      this.#sizeContainers([
-        firstContainer,
-        secondContainer
-      ], windowHeight)
+      this.#sizeContainers(containers, windowHeight)
+      this.#fadeBackground(windowHeight);
     });
-    this.#fadeBackground();
   }
 
-  #fadeBackground() {
-    const windowHeight = window.innerHeight;
+  #fadeBackground(windowHeight) {
     document.addEventListener('scroll', () => {
       if (window.pageYOffset > 20) {
-        const opac = (window.pageYOffset / windowHeight);
-        document.body.style.background = "linear-gradient(rgba(245, 245, 245, " + opac + "), rgba(245, 245, 245, " + opac + ")), rgba(14, 115, 179, 1)";
+        const opacity = (window.pageYOffset / windowHeight).toString();
+        document.body.style.background = `linear-gradient(rgba(245, 245, 245, ${opacity}), rgba(245, 245, 245, ${opacity})), rgba(14, 115, 179, 1)`;
       } else {
-        document.body.style.background = "rgba(14, 115, 179, 1)";
+        document.body.style.background = `rgba(14, 115, 179, 1)`;
       }
+      this.#controlModalPlacement();
     });
-    this.#controlModalPlacement();
   }
 
   #controlModalPlacement() {
-    document.addEventListener('scroll', () => {
-      const distance = window.scrollY;
-      const modal = document.querySelector('#modal-configuration');
-      modal.style.transform = `translateY(${distance * 0.3}px)`
-    });
+    const distance = window.scrollY;
+    const modal = document.querySelector('#modal-configuration');
+    modal.style.transform = `translateY(${distance * 0.3}px)`
   }
 
   #sizeContainers(containers, height) {
