@@ -2,6 +2,8 @@
 // when the whole configuration container is in view, stop translating modal. but you need to resume translation if they resume that scroll up again.
 
 class PageVisit {
+  #lastScrollTop = 0;
+
   init() {
     const windowHeight = window.innerHeight;
     const containers = [document.querySelector('#intro-header'), document.querySelector('#container-modal-configuration')];
@@ -32,8 +34,24 @@ class PageVisit {
 
   #controlModalPlacement() {
     const distance = window.scrollY;
+    const modalContainer = document.getElementById('container-modal-configuration');
     const modal = document.querySelector('#modal-configuration');
-    modal.style.transform = `translateY(${distance * 0.3}px)`
+    const bounding = modalContainer.getBoundingClientRect();
+    const scrollTopDistance = window.pageYOffset || document.documentElement.scrollTop;
+    if (bounding.top >= 0) {
+      modal.style.transform = `translateY(${distance * 0.3}px)`;
+    } else {
+      modal.style.transform = modal.style.transform;
+    }
+    if (bounding.top <= 400 &&
+      bounding.top >= 0 &&
+      bounding.left >= 0 &&
+      bounding.right <= (window.innerWidth || document.documentElement.clientWidth)) {
+      if (scrollTopDistance > this.#lastScrollTop) {
+        modalContainer.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+      }
+      this.#lastScrollTop = scrollTopDistance <= 0 ? 0 : scrollTopDistance;
+    }
   }
 
   #sizeContainers(containers, height) {
