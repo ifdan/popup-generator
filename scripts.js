@@ -34,7 +34,8 @@ class PageVisit {
 
   #controlModalPlacement() {
     const distance = window.scrollY;
-    const modalContainer = document.getElementById('container-modal-configuration');
+    const modalContainer = document.querySelector('#container-modal-configuration');
+    const modalHeading = document.querySelector('#modal-configuration-header')
     const modal = document.querySelector('#modal-configuration');
     const bounding = modalContainer.getBoundingClientRect();
     const scrollTopDistance = window.pageYOffset || document.documentElement.scrollTop;
@@ -48,7 +49,22 @@ class PageVisit {
       bounding.left >= 0 &&
       bounding.right <= (window.innerWidth || document.documentElement.clientWidth)) {
       if (scrollTopDistance > this.#lastScrollTop) {
+        modalHeading.style.display = 'block';
+        new Promise(resolve => {
+          setTimeout(resolve, 300);
+        }).then(() => {
+          modalHeading.style.opacity = '1';
+          modalContainer.style.background = 'rgb(169, 169, 169)';
+        });
         modalContainer.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+      } else {
+        modalHeading.style.opacity = '0';
+        modalContainer.style.background = 'none';
+        new Promise(resolve => {
+          setTimeout(resolve, 300);
+        }).then(() => {
+          modalHeading.style.display = 'none';
+        });
       }
       this.#lastScrollTop = scrollTopDistance <= 0 ? 0 : scrollTopDistance;
     }

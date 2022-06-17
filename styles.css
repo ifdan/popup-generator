@@ -59,9 +59,12 @@ header .container-modal-examples-parent {
 
 section .container-modal-configuration {
   display: none;
+  transition: background-color 300ms;
 }
 
 section .modal-configuration {
+  display: flex;
+  justify-content: center;
   border: 2px solid #000; 
   width: 700px; 
   height: 400px; 
@@ -69,6 +72,17 @@ section .modal-configuration {
   position: relative; 
   bottom: 3.5rem; 
   z-index: 2;
+}
+
+section .modal-configuration > h2 {
+  color: rgb(0, 0, 0);
+  display: none;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 3rem;
+  position: absolute;
+  bottom: 25rem;
+  transition: opacity 300ms;
+  opacity: 0;
 }
 
 section .modal-configuration > span {
