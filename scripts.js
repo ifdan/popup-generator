@@ -1,5 +1,4 @@
-// next time you get on:
-// when the whole configuration container is in view, stop translating modal. but you need to resume translation if they resume that scroll up again.
+// next time, start building the interactive builder
 
 class PageVisit {
   #lastScrollTop = 0;
@@ -35,7 +34,8 @@ class PageVisit {
   #controlModalPlacement() {
     const distance = window.scrollY;
     const modalContainer = document.querySelector('#container-modal-configuration');
-    const modalHeading = document.querySelector('#modal-configuration-header')
+    const modalHeading = document.querySelector('#modal-configuration-header');
+    const subModalHeading = document.querySelector('#sub-modal-configuration-header');
     const modal = document.querySelector('#modal-configuration');
     const bounding = modalContainer.getBoundingClientRect();
     const scrollTopDistance = window.pageYOffset || document.documentElement.scrollTop;
@@ -44,26 +44,26 @@ class PageVisit {
     } else {
       modal.style.transform = modal.style.transform;
     }
-    if (bounding.top <= 400 &&
+    if (bounding.top <= 450 &&
       bounding.top >= 0 &&
       bounding.left >= 0 &&
       bounding.right <= (window.innerWidth || document.documentElement.clientWidth)) {
       if (scrollTopDistance > this.#lastScrollTop) {
-        modalHeading.style.display = 'block';
-        new Promise(resolve => {
-          setTimeout(resolve, 300);
-        }).then(() => {
-          modalHeading.style.opacity = '1';
-          modalContainer.style.background = 'rgb(169, 169, 169)';
-        });
         modalContainer.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
-      } else {
-        modalHeading.style.opacity = '0';
-        modalContainer.style.background = 'none';
+        this.#changeDisplay([modalHeading, subModalHeading], 'block');
         new Promise(resolve => {
           setTimeout(resolve, 300);
         }).then(() => {
-          modalHeading.style.display = 'none';
+          this.#changeOpacity([modalHeading, subModalHeading], '1');
+          this.#startBuildDemo(modal, modalContainer);
+        });
+      } else {
+        this.#changeOpacity([modalHeading, subModalHeading], '0');
+        this.#cancelBuildDemo(modal, modalContainer);
+        new Promise(resolve => {
+          setTimeout(resolve, 300);
+        }).then(() => {
+          this.#changeDisplay([modalHeading, subModalHeading], 'none');
         });
       }
       this.#lastScrollTop = scrollTopDistance <= 0 ? 0 : scrollTopDistance;
@@ -74,6 +74,44 @@ class PageVisit {
     containers.forEach(element => {
       element.style.height = `${height}px`;
     });
+  }
+
+  #changeOpacity(elements, opacity) {
+    if (opacity === '1') {
+      elements.forEach((element) => {
+        element.style.opacity = '1';
+      });
+    } else {
+      elements.forEach((element) => {
+        element.style.opacity = '0';
+      });
+    }
+  }
+
+  #changeDisplay(elements, display) {
+    if (display === 'block') {
+      elements.forEach((element) => {
+        element.style.display = 'block';
+      });
+    } else {
+      elements.forEach((element) => {
+        element.style.display = 'none';
+      });
+    }
+  }
+
+  #startBuildDemo(modal, modalContainer) {
+    modalContainer.style.background = 'rgb(207, 207, 207)';
+    modal.classList.add('special-hover');
+    modal.style.width = '725px';
+    modal.style.height = '412.5px';
+  }
+
+  #cancelBuildDemo(modal, modalContainer) {
+    modalContainer.style.background = 'none';
+    modal.classList.remove('special-hover');
+    modal.style.width = '700px';
+    modal.style.height = '400px';
   }
 }
 

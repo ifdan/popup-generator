@@ -21,8 +21,8 @@ header .container-headline h1 {
   letter-spacing: 0.07rem;
 }
 
-header .container-headline h1 > span {
-  color: rgb(255,179,71);
+header .container-headline h1>span {
+  color: rgb(255, 179, 71);
 }
 
 header .container-headline h2 {
@@ -35,7 +35,7 @@ header .container-headline .create-header {
   line-height: 2rem;
 }
 
-header .container-headline .create-header > br {
+header .container-headline .create-header>br {
   display: none;
 }
 
@@ -49,7 +49,7 @@ header .container-headline .bi-arrow-down-circle-fill:hover {
 }
 
 header .container-headline .bi-arrow-down-circle-fill {
-  color: rgb(255,179,71);
+  color: rgb(255, 179, 71);
   transition: color 250ms;
 }
 
@@ -65,27 +65,46 @@ section .container-modal-configuration {
 section .modal-configuration {
   display: flex;
   justify-content: center;
-  border: 2px solid #000; 
-  width: 700px; 
-  height: 400px; 
-  background-color: white; 
-  position: relative; 
-  bottom: 3.5rem; 
+  border: 2px solid #000;
+  border-radius: 0.5rem;
+  box-shadow: 1.4px 1.4px 1.4px rgba(0, 0, 0, 0.035), 3.8px 3.8px 3.8px rgba(0, 0, 0, 0.05), 9px 9px 9px rgba(0, 0, 0, 0.065), 30px 30px 30px rgba(0, 0, 0, 0.1);
+  width: 700px;
+  height: 400px;
+  background-color: rgb(255, 255, 255);
+  position: relative;
+  bottom: 3.5rem;
+  transition: height 300ms, width 300ms, box-shadow 200ms, border-color 200ms;
   z-index: 2;
 }
 
-section .modal-configuration > h2 {
+section .modal-configuration.special-hover:hover {
+  border-color: #86b7fe;
+  box-shadow: 0 0 0 .25rem rgba(13,110,253,.25);
+  cursor: pointer;
+}
+
+section .modal-configuration>h2 {
   color: rgb(0, 0, 0);
   display: none;
   font-family: 'Permanent Marker', cursive;
   font-size: 3rem;
   position: absolute;
-  bottom: 25rem;
+  bottom: 28rem;
   transition: opacity 300ms;
   opacity: 0;
 }
 
-section .modal-configuration > span {
+section .modal-configuration>h5 {
+  color: rgb(0, 0, 0);
+  display: none;
+  font-family: 'Permanent Marker', cursive;
+  position: absolute;
+  bottom: 26rem;
+  transition: opacity 300ms;
+  opacity: 0;
+}
+
+section .modal-configuration>span {
   color: rgb(0, 0, 0);
   font-size: 1.7rem;
   font-weight: 500;
@@ -100,13 +119,13 @@ section .modal-configuration > span {
     padding: 0 0 1.8rem 2rem;
     font-size: 3.7rem;
   }
-  
+
   header .container-headline h2 {
     padding-left: 2rem;
     font-size: 1.7rem;
   }
 
-  header .container-headline .create-header > br {
+  header .container-headline .create-header>br {
     display: block;
   }
 }
@@ -116,7 +135,7 @@ section .modal-configuration > span {
     padding: 0 0 2rem 2rem;
     font-size: 4.2rem;
   }
-  
+
   header .container-headline h2 {
     font-size: 2rem;
   }
@@ -131,7 +150,7 @@ section .modal-configuration > span {
     padding: 0 0 2.2rem 2rem;
     font-size: 5rem;
   }
-  
+
   header .container-headline h2 {
     font-size: 2rem;
   }
@@ -158,7 +177,7 @@ section .modal-configuration > span {
     padding: 0 0 2.2rem 0;
     font-size: 6rem;
   }
-  
+
   header .container-headline h2 {
     font-size: 2.7rem;
     padding-left: 0;
