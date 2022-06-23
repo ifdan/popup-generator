@@ -1,5 +1,3 @@
-// next time, start building the interactive builder
-
 class PageVisit {
   #lastScrollTop = 0;
 
@@ -35,7 +33,6 @@ class PageVisit {
     const distance = window.scrollY;
     const modalContainer = document.querySelector('#container-modal-configuration');
     const modalHeading = document.querySelector('#modal-configuration-header');
-    const subModalHeading = document.querySelector('#sub-modal-configuration-header');
     const modal = document.querySelector('#modal-configuration');
     const bounding = modalContainer.getBoundingClientRect();
     const scrollTopDistance = window.pageYOffset || document.documentElement.scrollTop;
@@ -44,26 +41,34 @@ class PageVisit {
     } else {
       modal.style.transform = modal.style.transform;
     }
-    if (bounding.top <= 450 &&
+    if (bounding.top <= 400 &&
       bounding.top >= 0 &&
       bounding.left >= 0 &&
       bounding.right <= (window.innerWidth || document.documentElement.clientWidth)) {
       if (scrollTopDistance > this.#lastScrollTop) {
         modalContainer.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
-        this.#changeDisplay([modalHeading, subModalHeading], 'block');
+        this.#changeDisplay([modalHeading], 'block');
         new Promise(resolve => {
           setTimeout(resolve, 300);
         }).then(() => {
-          this.#changeOpacity([modalHeading, subModalHeading], '1');
+          this.#changeOpacity([modalHeading], '1');
           this.#startBuildDemo(modal, modalContainer);
+        }).then(() => {
+          new Promise(resolve => {
+            setTimeout(resolve, 300);
+          }).then(() => {
+            this.#addPulseAnimation(modal, modalHeading);
+          });
         });
       } else {
-        this.#changeOpacity([modalHeading, subModalHeading], '0');
+        this.#changeOpacity([modalHeading], '0');
+        this.#removePulseAnimation(modal, modalHeading);
         this.#cancelBuildDemo(modal, modalContainer);
         new Promise(resolve => {
           setTimeout(resolve, 300);
         }).then(() => {
-          this.#changeDisplay([modalHeading, subModalHeading], 'none');
+          this.#changeDisplay([modalHeading], 'none');
+          this.#cancelModalDemo(modal);
         });
       }
       this.#lastScrollTop = scrollTopDistance <= 0 ? 0 : scrollTopDistance;
@@ -103,15 +108,28 @@ class PageVisit {
   #startBuildDemo(modal, modalContainer) {
     modalContainer.style.background = 'rgb(207, 207, 207)';
     modal.classList.add('special-hover');
-    modal.style.width = '725px';
-    modal.style.height = '412.5px';
+    modal.style.width = '700px';
+    modal.style.height = '400px';
+  }
+
+  #addPulseAnimation(modal, header) {
+    modal.style.animation = 'pulse 2s ease-out infinite';
+    header.style.animation = 'pulseHeading 2s ease-out infinite'
   }
 
   #cancelBuildDemo(modal, modalContainer) {
     modalContainer.style.background = 'none';
     modal.classList.remove('special-hover');
-    modal.style.width = '700px';
-    modal.style.height = '400px';
+  }
+
+  #cancelModalDemo(modal) {
+    modal.style.width = '650px';
+    modal.style.height = '350px';
+  }
+
+  #removePulseAnimation(modal, header) {
+    modal.style.animation = 'none';
+    header.style.animation = 'none';
   }
 }
 
