@@ -59,7 +59,21 @@ header .container-modal-examples-parent {
 
 section .container-modal-configuration {
   display: none;
-  transition: background-color 300ms;
+  transition: background-color 200ms;
+}
+
+section #forced-demo h2 {
+  color: rgb(0, 0, 0);
+  display: none;
+  font-family: 'Walter Turncoat', cursive;
+  font-size: 3rem;
+  position: absolute;
+  transition: opacity 200ms;
+  opacity: 0;
+}
+
+section #forced-demo h2 > svg {
+  margin-top: 4rem;
 }
 
 section .modal-configuration {
@@ -73,29 +87,8 @@ section .modal-configuration {
   background-color: rgb(255, 255, 255);
   position: relative;
   bottom: 3.5rem;
-  transition: height 300ms, width 300ms, box-shadow 200ms, border-color 200ms;
+  transition: height 200ms, width 200ms, box-shadow 200ms, border-color 200ms;
   z-index: 2;
-}
-
-section .modal-configuration.special-hover:hover {
-  border-color: #86b7fe;
-  cursor: pointer;
-}
-
-section .modal-configuration>h2 {
-  color: rgb(0, 0, 0);
-  display: none;
-  font-family: 'Walter Turncoat', cursive;
-  font-size: 3rem;
-  position: absolute;
-  bottom: 26rem;
-  left: 0.375rem;
-  transition: opacity 300ms;
-  opacity: 0;
-}
-
-section .modal-configuration>h2 svg {
-  margin-top: 4rem;
 }
 
 section .modal-configuration>span {
@@ -106,6 +99,11 @@ section .modal-configuration>span {
   right: 0.7rem;
   top: 0.6rem;
   line-height: 1.2rem;
+}
+
+section .modal-configuration.special-hover:hover {
+  border-color: #86b7fe;
+  cursor: pointer;
 }
 
 @keyframes pulse {
@@ -125,23 +123,6 @@ section .modal-configuration>span {
     width: 700px;
     height: 400px;
     box-shadow: 1.4px 1.4px 1.4px rgba(0, 0, 0, 0.035), 3.8px 3.8px 3.8px rgba(0, 0, 0, 0.05), 9px 9px 9px rgba(0, 0, 0, 0.065), 30px 30px 30px rgba(0, 0, 0, 0.1);
-  }
-}
-
-@keyframes pulseHeading {
-  0% {
-    bottom: 26rem;
-    left: 0.375rem;
-  }
-
-  50% {
-    bottom: 25.375rem;
-    left: 0
-  }
-
-  100% {
-    bottom: 26rem;
-    left: 0.375rem;
   }
 }
 
