@@ -1,15 +1,19 @@
 class PageVisit {
   #lastScrollTop = 0;
   #windowHeight = window.innerHeight;
-  #containers = [document.querySelector('#intro-header'), document.querySelector('#container-modal-configuration')]
+  #containers = [document.querySelector('#intro-header'), document.querySelector('#container-modal-configuration')];
 
   init() {
-    this.#sizeContainers(this.#containers, this.#windowHeight)
+    this.#sizeContainers(this.#containers, this.#windowHeight);
+    // refactor
+    document.querySelector('#modal-configuration').style.display = 'flex';
     this.#addWindowListener(this.#containers, this.#windowHeight);
   }
 
   #addWindowListener(containers, windowHeight) {
     this.#fadeBackground(windowHeight);
+    const callback = this.#fadeBackground(windowHeight);
+    document.addEventListener('scroll', callback);
     window.addEventListener('resize', () => {
       const windowHeight = window.innerHeight;
       this.#sizeContainers(containers, windowHeight)
@@ -18,19 +22,25 @@ class PageVisit {
   }
 
   #fadeBackground(windowHeight) {
-    const myScrollEvent = () => {
+    const scrollEventCallback = () => {
       if (window.pageYOffset > 20) {
         const opacity = (window.pageYOffset / windowHeight).toString();
         document.body.style.background = `linear-gradient(rgba(245, 245, 245, ${opacity}), rgba(245, 245, 245, ${opacity})), rgba(14, 115, 179, 1)`;
       } else {
-        document.body.style.background = `rgba(14, 115, 179, 1)`;
+        // refactor
+        if (document.querySelector('.build-component').style.display === 'flex') {
+          document.body.style.background = `rgb(245, 245, 245)`;
+        } else {
+          document.body.style.background = `rgba(14, 115, 179, 1)`;
+        }
       }
-      this.#controlModalPlacement(myScrollEvent);
+      this.#controlModalPlacement(scrollEventCallback);
     }
-    document.addEventListener('scroll', myScrollEvent);
+    scrollEventCallback();
+    return scrollEventCallback;
   }
 
-  #controlModalPlacement(myScrollEvent) {
+  #controlModalPlacement(scrollEventCallback) {
     const distance = window.scrollY;
     const modalContainer = document.querySelector('#container-modal-configuration');
     const modalHeading = document.querySelector('#modal-configuration-header');
@@ -40,7 +50,7 @@ class PageVisit {
     bounding.top >= 0 ? modal.style.transform = `translateY(${distance * 0.3}px)` : modal.style.transform = modal.style.transform;
     if (bounding.top <= 400 && bounding.top >= 0 && bounding.left >= 0 && bounding.right <= (window.innerWidth || document.documentElement.clientWidth)) {
       if (scrollTopDistance > this.#lastScrollTop) {
-        this.#showContent(modal, modalContainer, modalHeading, myScrollEvent);
+        this.#showContent(modal, modalContainer, modalHeading, scrollEventCallback);
         modalContainer.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
       } else {
         this.#removeContent(modal, modalContainer, modalHeading);
@@ -55,13 +65,13 @@ class PageVisit {
     });
   }
 
-  #showContent(modal, modalContainer, modalHeading, myScrollEvent) {
+  #showContent(modal, modalContainer, modalHeading, scrollEventCallback) {
     this.#changeHeadingDisplay([modalHeading], 'block', modal.getBoundingClientRect().y, modalContainer.style.height);
     new Promise(resolve => {
       setTimeout(resolve, 200);
     }).then(() => {
       this.#changeOpacity([modalHeading], '1');
-      this.#startBuildDemo(modal, modalContainer, modalHeading, myScrollEvent);
+      this.#startBuildDemo(modal, modalContainer, modalHeading, scrollEventCallback);
     }).then(() => {
       new Promise(resolve => {
         setTimeout(resolve, 200);
@@ -78,7 +88,7 @@ class PageVisit {
     new Promise(resolve => {
       setTimeout(resolve, 200);
     }).then(() => {
-      this.#changeHeadingDisplay([modalHeading], 'none');
+      this.#changeHeadingDisplay([modalHeading], 'none', modal.getBoundingClientRect().y, modalContainer.style.height);
       this.#cancelModalDemo(modal);
     });
   }
@@ -113,17 +123,23 @@ class PageVisit {
     }
   }
 
-  #startBuildDemo(modal, modalContainer, header, myScrollEvent) {
+  #startBuildDemo(modal, modalContainer, header, scrollEventCallback) {
     modalContainer.style.background = 'rgb(207, 207, 207)';
     modal.classList.add('special-hover');
     modal.style.width = '700px';
     modal.style.height = '400px';
     modal.addEventListener('click', () => {
-      document.removeEventListener('scroll', myScrollEvent);
+      document.removeEventListener('scroll', scrollEventCallback);
       this.#removePulseAnimation(modal, header);
       this.#cancelBuildDemo(modal, modalContainer);
       document.querySelector('#intro-header').style.display = 'none';
       header.style.display = 'none';
+      document.querySelectorAll('.container-build-btns-modal')[0].classList.add('col-xl-8');
+      document.querySelector('#forced-demo').style.height = '100%';
+      document.querySelectorAll('.container-build-control')[0].style.display = 'flex';
+      document.querySelectorAll('.container-btn-tool')[0].style.display = 'flex';
+      modal.style.transform = 'none';
+      modal.style.bottom = '0';
     });
   }
 
