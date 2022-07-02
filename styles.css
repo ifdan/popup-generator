@@ -66,10 +66,27 @@ section #forced-demo .build-component {
   display: none;
 }
 
+section #forced-demo .container-build-control {
+  flex-wrap: wrap;
+  align-content: center;
+  padding-left: 0;
+}
+
 section #forced-demo .container-build-control > button {
   border: 2px solid black;
+  border-bottom: none;
+  max-height: 6rem;
+  height: 100%;
   max-width: 450px;
   width: 100%;
+}
+
+section #forced-demo .container-build-control > button:last-child {
+  border-bottom: 2px solid black;
+}
+
+section #forced-demo .container-build-control .second-build-control {
+  display: none;
 }
 
 section #forced-demo .container-build-btns-modal {
@@ -79,7 +96,6 @@ section #forced-demo .container-build-btns-modal {
 }
 
 section #forced-demo .container-btn-tool {
-  /* display: flex; */
   align-items: flex-start;
   justify-content: center; 
   margin-top: 1rem; 
@@ -140,7 +156,7 @@ section .modal-configuration>span {
   line-height: 1.2rem;
 }
 
-section .modal-configuration.special-hover:hover {
+section .modal-configuration.build-hover:hover {
   border-color: #86b7fe;
   cursor: pointer;
 }

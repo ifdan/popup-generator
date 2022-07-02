@@ -41,8 +41,19 @@
       <section>
         <div id="container-modal-configuration" class="container-fluid container-modal-configuration">
           <div id="forced-demo" class="row">
-            <div class="col-xl-4 build-component container-build-control">
-              <button>Content</button>
+            <div id="container-build-control" class="col-xl-4 build-component container-build-control">
+              <button id="build-test">
+                <span class="main-build-control">General <i class="bi bi-arrow-right"></i></span>
+                <span class="second-build-control">
+                  <label for="customRange1" class="form-label">Example range</label>
+                  <input type="range" class="form-range" id="customRange1">
+                </span>
+              </button>
+              <button>Border <i class="bi bi-arrow-right"></i></button>
+              <button>Background <i class="bi bi-arrow-right"></i></button>
+              <button>&times; <i class="bi bi-arrow-right"></i></button>
+              <button>Button <i class="bi bi-arrow-right"></i></button>
+              <button>Text <i class="bi bi-arrow-right"></i></button>
             </div>
             <div class="col-12 container-build-btns-modal">
               <div class="build-component container-btn-tool">
@@ -56,7 +67,7 @@
                   <path d="M77 53.6428L90.79 27" stroke="black" stroke-width="4" stroke-linecap="round"/>
                 </svg>                    
               </h2>
-              <div id="modal-configuration" class="modal-configuration">
+              <div id="modal-configuration" class="modal-configuration build-hover">
                 <span>&times;</span></div>
             </div>
           </div>
