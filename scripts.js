@@ -12,10 +12,10 @@ class PageVisit {
     this.#addWindowListener(this.#modal, this.#modalContainer, this.#modalHeading, this.#containers, this.#windowHeight);
   }
 
-  #addWindowListener(modal, modalContainer, header ,containers, windowHeight) {
-    this.#fadeBackground(modal, modalContainer, header, windowHeight);
+  #addWindowListener(modal, modalContainer, header, containers, windowHeight) {
+    this.#fadeBackground(windowHeight);
 
-    const scrollCallback = this.#fadeBackground(modal, modalContainer, header, windowHeight);
+    const scrollCallback = this.#fadeBackground(windowHeight);
     document.addEventListener('scroll', scrollCallback);
 
     const clickCallback = this.#showBuild(modal, modalContainer, header, scrollCallback);
@@ -24,11 +24,11 @@ class PageVisit {
     window.addEventListener('resize', () => {
       const windowHeight = window.innerHeight;
       this.#sizeContainers(containers, windowHeight)
-      this.#fadeBackground(modal, modalContainer, header, windowHeight);
+      this.#fadeBackground(windowHeight);
     });
   }
 
-  #fadeBackground(modal, modalContainer, header, windowHeight) {
+  #fadeBackground(windowHeight) {
     const scrollEventCallback = () => {
       if (window.pageYOffset > 20) {
         const opacity = (window.pageYOffset / windowHeight).toString();
@@ -36,14 +36,17 @@ class PageVisit {
       } else {
         this.#updateBackgroundColor();
       }
-      this.#controlModalPlacement(modal, modalContainer, header, scrollEventCallback);
+      this.#controlModalPlacement(scrollEventCallback);
     }
     scrollEventCallback();
     return scrollEventCallback;
   }
 
-  #controlModalPlacement(modal, header, modalContainer) {
+  #controlModalPlacement() {
     const distance = window.scrollY;
+    const modalContainer = document.querySelector('#container-modal-configuration');
+    const modalHeading = document.querySelector('#modal-configuration-header');
+    const modal = document.querySelector('#modal-configuration');
     const bounding = modalContainer.getBoundingClientRect();
     const scrollTopDistance = window.pageYOffset || document.documentElement.scrollTop;
 
@@ -51,11 +54,10 @@ class PageVisit {
 
     if (bounding.top <= 400 && bounding.top >= 0 && bounding.left >= 0 && bounding.right <= (window.innerWidth || document.documentElement.clientWidth)) {
       if (scrollTopDistance > this.#lastScrollTop) {
-        this.#showContent(modal, modalContainer, header);
+        this.#showContent(modal, modalContainer, modalHeading);
         modalContainer.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
       } else {
-        // breaking change here
-        this.#removeContent(modal, modalContainer, header);
+        this.#removeContent(modal, modalContainer, modalHeading);
       }
       this.#lastScrollTop = scrollTopDistance <= 0 ? 0 : scrollTopDistance;
     }
@@ -95,7 +97,7 @@ class PageVisit {
   #removeContent(modal, modalContainer, modalHeading) {
     this.#changeOpacity(modalHeading, '0');
     this.#removePulseAnimation(modal, modalHeading);
-    this.#cancelBuildDemo(modal, modalContainer);
+    this.#cancelBuildDemo(modalContainer);
     new Promise(resolve => {
       setTimeout(resolve, 200);
     }).then(() => {
@@ -147,9 +149,10 @@ class PageVisit {
 
   #showBuild(modal, modalContainer, header, scrollEventCallback) {
     const showBuildCallback = () => {
+      console.log('registered');
       document.removeEventListener('scroll', scrollEventCallback);
       this.#removePulseAnimation(modal, header);
-      this.#cancelBuildDemo(modal, modalContainer);
+      this.#cancelBuildDemo(modalContainer);
       document.querySelector('#intro-header').style.display = 'none';
       document.querySelectorAll('.container-build-btns-modal')[0].classList.add('col-xl-8');
       document.body.style.background = `rgb(245, 245, 245)`;
