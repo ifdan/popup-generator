@@ -149,7 +149,6 @@ class PageVisit {
 
   #showBuild(modal, modalContainer, header, scrollEventCallback) {
     const showBuildCallback = () => {
-      console.log('registered');
       document.removeEventListener('scroll', scrollEventCallback);
       this.#removePulseAnimation(modal, header);
       this.#cancelBuildDemo(modalContainer);
@@ -164,6 +163,7 @@ class PageVisit {
       modal.style.transform = 'none';
       modal.style.bottom = '0';
       this.#modalBuildButtons();
+      modal.removeEventListener('click', showBuildCallback);
     }
     return showBuildCallback;
   }
@@ -171,7 +171,9 @@ class PageVisit {
   #modalBuildButtons() {
     const button = document.querySelector('#build-test');
     button.addEventListener('click', e => {
-      document.querySelector('.second-build-control').style.display = 'block';
+      document.querySelectorAll('.second-build-control').forEach(element => {
+        element.style.display = 'block';
+      })
       document.querySelector('.main-build-control').style.display = 'none';
     });
   }
