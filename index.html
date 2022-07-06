@@ -42,20 +42,99 @@
         <div id="container-modal-configuration" class="container-fluid container-modal-configuration">
           <div id="forced-demo" class="row">
             <div id="container-build-control" class="col-xl-4 build-component container-build-control">
-              <div id="build-test">
-                <span class="btn main-build-control">General <i class="bi bi-arrow-right"></i></span>
-                <span class="btn second-build-control">Size <i class="bi bi-arrow-right"></i></span>
-                <span class="third-build-control" style="display: none;">
-                  <label for="customRange1" class="form-label">Example range</label>
-                  <input type="range" class="form-range" id="customRange1">
-                </span>
+
+              <div id="general-configuration">
+                <button class="btn btn-secondary main-build-control">General <i class="bi bi-arrow-right"></i></button>
+                <div class="sub-build-control">
+                  <i class="bi bi-arrow-left back-build-control"></i>
+                  <div class="input-group input-group-sm" style="margin-left: 1rem; margin-right: 0.5rem;">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Width</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                  </div>
+                  <div class="input-group input-group-sm">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Height</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                  </div>
+                </div>
               </div>
-              <button>Border <i class="bi bi-arrow-right"></i></button>
-              <button>Background <i class="bi bi-arrow-right"></i></button>
-              <button>&times; <i class="bi bi-arrow-right"></i></button>
-              <button>Button <i class="bi bi-arrow-right"></i></button>
-              <button>Text <i class="bi bi-arrow-right"></i></button>
+
+              <div id="border-configuration">
+                <button class="btn btn-secondary main-build-control">Border <i class="bi bi-arrow-right"></i></button>
+                <div class="sub-build-control">
+                  <i class="bi bi-arrow-left back-build-control"></i>
+                  <div class="input-group input-group-sm" style="margin-left: 1rem; margin-right: 0.5rem;">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Color</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                  </div>
+                  <div class="input-group input-group-sm">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Radius</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                  </div>
+                  <div class="input-group input-group-sm">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Width</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                  </div>
+                </div>
+              </div>
+
+              <div id="background-configuration">
+                <button class="btn btn-secondary main-build-control">Background <i class="bi bi-arrow-right"></i></button>
+                <div class="sub-build-control">
+                  <i class="bi bi-arrow-left back-build-control"></i>
+                  <div class="input-group input-group-sm">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Color</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                  </div>
+                </div>
+              </div>
+
+              <div class="close-btn-configuration">
+                <button class="btn btn-secondary main-build-control">&times; <i class="bi bi-arrow-right"></i></button>
+                <div class="sub-build-control">
+                  <i class="bi bi-arrow-left back-build-control"></i>
+                  <div class="input-group input-group-sm">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Color</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                  </div>
+                </div>
+              </div>
+
+              <div class="button-configuration">
+                <button class="btn btn-secondary main-build-control">Button <i class="bi bi-arrow-right"></i></button>
+                <div class="sub-build-control">
+                  <i class="bi bi-arrow-left back-build-control"></i>
+                  <div class="input-group input-group-sm">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Width</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                  </div>
+                  <div class="input-group input-group-sm">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Height</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                  </div>
+                  <div class="input-group input-group-sm">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">BG Color</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                  </div>
+                  <div class="input-group input-group-sm">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Border Color</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                  </div>
+                </div>
+              </div>
+
+              <div class="text-configuration">
+                <button class="btn btn-secondary main-build-control">Text <i class="bi bi-arrow-right"></i></button>
+                <div class="sub-build-control">
+                  <i class="bi bi-arrow-left back-build-control"></i>
+                  <div class="input-group input-group-sm">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Color</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                  </div>
+                </div>
+              </div>
+
             </div>
+
             <div class="col-12 container-build-btns-modal">
               <div class="build-component container-btn-tool">
                 <button type="button" class="btn btn-outline-success btn-tool btn-test">Test</button>

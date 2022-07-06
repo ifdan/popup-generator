@@ -169,12 +169,41 @@ class PageVisit {
   }
 
   #modalBuildButtons() {
-    const button = document.querySelector('#build-test');
-    button.addEventListener('click', e => {
-      document.querySelectorAll('.second-build-control').forEach(element => {
-        element.style.display = 'block';
-      })
-      document.querySelector('.main-build-control').style.display = 'none';
+    const mainOptions = document.querySelectorAll('.main-build-control');
+    mainOptions.forEach((element, index, array) => {
+      element.addEventListener('click', e => {
+        element.style.display = 'none';
+        element.parentNode.style.borderBottom = '2px solid black';
+        element.nextElementSibling.style.display = 'flex';
+        array.forEach(ele => {
+          if (ele !== element) {
+            ele.parentNode.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    const secondOptions = document.querySelectorAll('.second-build-control');
+    secondOptions.forEach(element => {
+      element.addEventListener('click', e => {
+        element.style.display = 'none';
+        element.nextElementSibling.style.display = 'flex';
+      });
+    });
+
+    const backBtns = document.querySelectorAll('.back-build-control');
+    backBtns.forEach((element, index, array) => {
+      element.addEventListener('click', e => {
+        element.parentNode.style.display = 'none';
+        array.forEach(ele => {
+          const mainConfigContainer = ele.parentNode.parentNode;
+          mainConfigContainer.firstElementChild.style.display = 'flex';
+          mainConfigContainer.style.display = 'block';
+          if (mainConfigContainer !== array[array.length - 1].parentNode.parentNode) {
+            mainConfigContainer.style.borderBottom = 'none';
+          }
+        });
+      });
     });
   }
 }
