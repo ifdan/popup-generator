@@ -167,11 +167,13 @@ section .modal-configuration {
   border-radius: 0.5rem;
   box-shadow: 1.4px 1.4px 1.4px rgba(0, 0, 0, 0.035), 3.8px 3.8px 3.8px rgba(0, 0, 0, 0.05), 9px 9px 9px rgba(0, 0, 0, 0.065), 30px 30px 30px rgba(0, 0, 0, 0.1);
   width: 650px;
+  min-width: 100px;
   height: 350px;
+  min-height: 50px;
   background-color: rgb(255, 255, 255);
   position: relative;
   bottom: 3.5rem;
-  transition: height 200ms, width 200ms, box-shadow 200ms, border-color 200ms;
+  transition: height 200ms, width 200ms, box-shadow 200ms, border-color 200ms, border-radius 200ms, border-width 200ms, background-color 200ms;
   z-index: 2;
 }
 
@@ -183,6 +185,7 @@ section .modal-configuration>span {
   right: 0.7rem;
   top: 0.6rem;
   line-height: 1.2rem;
+  transition: color 200ms;
 }
 
 section .modal-configuration.build-hover:hover {

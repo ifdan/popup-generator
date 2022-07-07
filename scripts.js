@@ -162,13 +162,13 @@ class PageVisit {
       modal.classList.remove('build-hover');
       modal.style.transform = 'none';
       modal.style.bottom = '0';
-      this.#modalBuildButtons();
+      this.#modalBuildButtons(modal);
       modal.removeEventListener('click', showBuildCallback);
     }
     return showBuildCallback;
   }
 
-  #modalBuildButtons() {
+  #modalBuildButtons(modal) {
     const mainOptions = document.querySelectorAll('.main-build-control');
     mainOptions.forEach((element, index, array) => {
       element.addEventListener('click', e => {
@@ -177,7 +177,7 @@ class PageVisit {
         element.nextElementSibling.style.display = 'flex';
         array.forEach(ele => {
           if (ele !== element) {
-            ele.parentNode.style.display = 'none';
+            ele.parentNode.style.visibility = 'hidden';
           }
         });
       });
@@ -198,11 +198,64 @@ class PageVisit {
         array.forEach(ele => {
           const mainConfigContainer = ele.parentNode.parentNode;
           mainConfigContainer.firstElementChild.style.display = 'flex';
-          mainConfigContainer.style.display = 'block';
+          mainConfigContainer.style.visibility = 'visible';
           if (mainConfigContainer !== array[array.length - 1].parentNode.parentNode) {
             mainConfigContainer.style.borderBottom = 'none';
           }
         });
+      });
+    });
+
+    this.#allowConfiguration(modal);
+  }
+
+  #allowConfiguration(modal) {
+    this.#modalGeneralConfiguration(modal);
+    this.#modalBorderConfiguration(modal);
+    this.#modalBackgroundConfiguration(modal);
+    this.#modalCloseBtnConfiguration();
+  }
+
+  #modalGeneralConfiguration(modal) {
+    const widthInput = document.querySelector('#modal-config-width');
+    const heightInput = document.querySelector('#modal-config-height');
+    [widthInput, heightInput].forEach(element => {
+      element.addEventListener('input', e => {
+        modal.style.width = `${widthInput.value}px`;
+        modal.style.height = `${heightInput.value}px`;
+      });
+    });
+  }
+
+  #modalBorderConfiguration(modal) {
+    modal.style.transistion = 'border-radius 200ms';
+    const borderColorInput = document.querySelector('#modal-config-border-color');
+    const borderRadiusInput = document.querySelector('#modal-config-border-radius');
+    const borderWidthInput = document.querySelector('#modal-config-border-width');
+    [borderColorInput, borderRadiusInput, borderWidthInput].forEach(element => {
+      element.addEventListener('input', e => {
+        modal.style.borderColor = borderColorInput.value;
+        modal.style.borderRadius = `${borderRadiusInput.value}px`;
+        modal.style.borderWidth = `${borderWidthInput.value}px`;
+      });
+    });
+  }
+
+  #modalBackgroundConfiguration(modal) {
+    const backgroundColorInput = document.querySelector('#modal-config-background-color');
+    [backgroundColorInput].forEach(element => {
+      element.addEventListener('input', e => {
+        modal.style.backgroundColor = backgroundColorInput.value;
+      });
+    });
+  }
+
+  #modalCloseBtnConfiguration() {
+    const closeBtnColorInput = document.querySelector('#modal-config-close-btn-color');
+    const closeBtn = document.querySelector('#modal-close-btn');
+    [closeBtnColorInput].forEach(element => {
+      element.addEventListener('input', e => {
+        closeBtn.style.color = closeBtnColorInput.value;
       });
     });
   }
