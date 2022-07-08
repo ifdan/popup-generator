@@ -214,6 +214,7 @@ class PageVisit {
     this.#modalBorderConfiguration(modal);
     this.#modalBackgroundConfiguration(modal);
     this.#modalCloseBtnConfiguration();
+    this.#createTextBox(modal);
   }
 
   #modalGeneralConfiguration(modal) {
@@ -256,6 +257,35 @@ class PageVisit {
     [closeBtnColorInput].forEach(element => {
       element.addEventListener('input', e => {
         closeBtn.style.color = closeBtnColorInput.value;
+      });
+    });
+  }
+
+  #createTextBox(modal) {
+    const textCreation = document.querySelector('#create-text-box');
+    const buildTextContent = (e) => {
+      e.target.parentElement.nextElementSibling.style.display = 'flex';
+      const textDiv = document.createElement('div');
+      const text = document.createElement('h1');
+      text.style.color = 'black';
+      textDiv.appendChild(text);
+      modal.appendChild(textDiv);
+      textCreation.removeEventListener('click', buildTextContent);
+      e.target.style.display = 'none';
+      this.#changeTextFromInput(text);
+    }
+    textCreation.addEventListener('click', buildTextContent);
+  }
+
+  #changeTextFromInput(text) {
+    const fontContent = document.querySelector('#modal-config-font-content');
+    const fontColor = document.querySelector('#modal-config-font-color');
+    const fontSize = document.querySelector('#modal-config-font-size');
+    [fontContent, fontColor, fontSize].forEach(element => {
+      element.addEventListener('input', e => {
+        text.innerText = fontContent.value;
+        text.style.color = fontColor.value;
+        text.style.fontSize = `${fontSize.value}px`;
       });
     });
   }

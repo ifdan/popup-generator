@@ -99,7 +99,8 @@ section #forced-demo .container-build-control .second-build-control {
   display: none;
 }
 
-section #forced-demo .container-build-control .sub-build-control {
+section #forced-demo .container-build-control .sub-build-control,
+section #forced-demo .container-build-control .sub-build-control .create-text-configuration {
   display: none;
   flex-wrap: wrap;
   justify-content: space-evenly;
@@ -108,14 +109,24 @@ section #forced-demo .container-build-control .sub-build-control {
   position: relative;
 }
 
+section #forced-demo .container-build-control .sub-build-control .add-content-button:hover {
+  cursor: pointer;
+}
+
+section #forced-demo .container-build-control .sub-build-control .add-content-button {
+  color: rgb(0, 0, 0);
+  font-size: 2rem;
+}
+
 section #forced-demo .container-build-control .sub-build-control .input-group {
   width: 40%;
 }
 
-section #forced-demo .container-build-control .sub-build-control .bi-arrow-left {
+section #forced-demo .container-build-control .sub-build-control .back-build-control {
   color: rgb(33, 37, 41);
   position: absolute;
   left: 0.5rem;
+  z-index: 1;
 }
 
 section #forced-demo .container-build-btns-modal {
@@ -173,6 +184,7 @@ section .modal-configuration {
   background-color: rgb(255, 255, 255);
   position: relative;
   bottom: 3.5rem;
+  overflow: hidden;
   transition: height 200ms, width 200ms, box-shadow 200ms, border-color 200ms, border-radius 200ms, border-width 200ms, background-color 200ms;
   z-index: 2;
 }
