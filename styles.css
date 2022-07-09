@@ -100,7 +100,8 @@ section #forced-demo .container-build-control .second-build-control {
 }
 
 section #forced-demo .container-build-control .sub-build-control,
-section #forced-demo .container-build-control .sub-build-control .create-text-configuration {
+section #forced-demo .container-build-control .sub-build-control .create-text-configuration,
+section #forced-demo .container-build-control .sub-build-control .create-button-configuration {
   display: none;
   flex-wrap: wrap;
   justify-content: space-evenly;
@@ -159,7 +160,6 @@ section #forced-demo .btn-export {
 
 section #forced-demo h2 {
   color: rgb(0, 0, 0);
-  display: none;
   font-family: 'Walter Turncoat', cursive;
   font-size: 3rem;
   position: absolute;

@@ -89,14 +89,14 @@ class PageVisit {
       new Promise(resolve => {
         setTimeout(resolve, 200);
       }).then(() => {
-        this.#addPulseAnimation(modal, modalHeading);
+        this.#addPulseAnimation(modal);
       });
     });
   }
 
   #removeContent(modal, modalContainer, modalHeading) {
     this.#changeOpacity(modalHeading, '0');
-    this.#removePulseAnimation(modal, modalHeading);
+    this.#removePulseAnimation(modal);
     this.#cancelBuildDemo(modalContainer);
     new Promise(resolve => {
       setTimeout(resolve, 200);
@@ -150,7 +150,7 @@ class PageVisit {
   #showBuild(modal, modalContainer, header, scrollEventCallback) {
     const showBuildCallback = () => {
       document.removeEventListener('scroll', scrollEventCallback);
-      this.#removePulseAnimation(modal, header);
+      this.#removePulseAnimation(modal);
       this.#cancelBuildDemo(modalContainer);
       document.querySelector('#intro-header').style.display = 'none';
       document.querySelectorAll('.container-build-btns-modal')[0].classList.add('col-xl-8');
@@ -215,6 +215,7 @@ class PageVisit {
     this.#modalBackgroundConfiguration(modal);
     this.#modalCloseBtnConfiguration();
     this.#createTextBox(modal);
+    this.#createButton(modal);
   }
 
   #modalGeneralConfiguration(modal) {
@@ -286,6 +287,40 @@ class PageVisit {
         text.innerText = fontContent.value;
         text.style.color = fontColor.value;
         text.style.fontSize = `${fontSize.value}px`;
+      });
+    });
+  }
+
+  #createButton(modal) {
+    const btnCreation = document.querySelector('#create-button');
+    const buildBtnContent = (e) => {
+      e.target.parentElement.nextElementSibling.style.display = 'flex';
+      const btnDiv = document.createElement('div');
+      const btn = document.createElement('button');
+      btnDiv.appendChild(btn);
+      modal.appendChild(btnDiv);
+      btnCreation.removeEventListener('click', buildBtnContent);
+      e.target.style.display = 'none';
+      this.#changeBtnFromInput(btn);
+    }
+    btnCreation.addEventListener('click', buildBtnContent);
+  }
+
+  #changeBtnFromInput(btn) {
+    const btnWidth = document.querySelector('#modal-config-button-width');
+    const btnHeight = document.querySelector('#modal-config-button-height');
+    const btnColor = document.querySelector('#modal-config-button-color');
+    const btnBorderColor = document.querySelector('#modal-config-button-border-color');
+    const btnText = document.querySelector('#modal-config-button-text');
+    btn.style.borderWidth = '3px';
+    btn.innerText = 'button';
+    [btnWidth, btnHeight, btnColor, btnBorderColor, btnText].forEach(element => {
+      element.addEventListener('input', e => {
+        btn.style.width = `${parseInt(btnWidth.value)}px`;
+        btn.style.height = `${parseInt(btnHeight.value)}px`;
+        btn.style.backgroundColor = btnColor.value;
+        btn.style.borderColor = btnBorderColor.value;
+        btn.innerText = btnText.value;
       });
     });
   }
