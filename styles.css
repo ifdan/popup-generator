@@ -205,6 +205,10 @@ section .modal-configuration.build-hover:hover {
   cursor: pointer;
 }
 
+section .modal-configuration h1 {
+  color: rgb(0, 0, 0);
+}
+
 @keyframes pulse {
   0% {
     width: 700px;

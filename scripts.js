@@ -269,6 +269,7 @@ class PageVisit {
       const textDiv = document.createElement('div');
       const text = document.createElement('h1');
       text.style.color = 'black';
+      text.innerText = 'Text';
       textDiv.appendChild(text);
       modal.appendChild(textDiv);
       textCreation.removeEventListener('click', buildTextContent);
